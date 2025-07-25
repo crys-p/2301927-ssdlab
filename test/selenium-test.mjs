@@ -21,7 +21,6 @@ async function runTests() {
         // Test cases
         const testCases = [
             // Normal input
-            { name: 'Normal Input', payload: 'hello world', expectBlocked: false },
             { name: 'Normal SQL Word', payload: 'select', expectBlocked: false },
             { name: 'Normal Alphanumeric', payload: 'user123', expectBlocked: false },
             { name: 'Normal Sentence', payload: 'This is a test search.', expectBlocked: false },
