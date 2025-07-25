@@ -1,5 +1,4 @@
-import { Builder, By, until } from 'selenium-webdriver';
-import assert from 'assert';
+import { Builder, By } from 'selenium-webdriver';
 
 // Get the argument (default to 'local' if not provided)
 const environment = process.argv[2] || 'local';
@@ -60,7 +59,7 @@ async function runTests() {
             if (value === '') {
                 console.log(`${test.name} blocked: PASS`);
             } else {
-                // If not blocked, check if we navigated to result page
+                // If not blocked, check if we navigated to result yespage
                 let url = await driver.getCurrentUrl();
                 if (url.includes('/result')) {
                     console.log(`${test.name} blocked: FAIL (navigated to result)`);

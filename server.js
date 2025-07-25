@@ -12,12 +12,14 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Input validation function (OWASP C5)
 function isMaliciousInput(input) {
-    // Basic check for XSS and SQLi patterns
+    // Block XSS patterns
     const xssPattern = /<script|onerror|onload|<img|<svg|javascript:|alert\s*\(|document\.|window\.|eval\s*\(|\"|\'|\`|\=|\>|\</i;
-    const sqliPattern = /('|"|;|--|\b(SELECT|INSERT|UPDATE|DELETE|DROP|UNION|OR|AND)\b)/i;
+    // Block only suspicious SQLi patterns (quotes, semicolons, double dashes, comments, etc.)
+    const sqliPattern = /('|"|;|--|#|\/\*|\*\/|\bOR\b|\bAND\b)/i;
     return xssPattern.test(input) || sqliPattern.test(input);
 }
 
