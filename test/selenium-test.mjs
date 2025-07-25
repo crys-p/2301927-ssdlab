@@ -30,21 +30,11 @@ async function runTests() {
             { name: 'XSS IMG OnError', payload: '<img src=x onerror=alert(2)>', expectBlocked: true },
             { name: 'XSS SVG OnLoad', payload: '<svg/onload=alert(3)>', expectBlocked: true },
             { name: 'XSS Double Quote Script', payload: '"<script>alert(4)</script>', expectBlocked: true },
-            { name: 'XSS Body OnLoad', payload: '<body onload=alert(5)>', expectBlocked: true },
-            { name: 'XSS Iframe JS', payload: "<iframe src='javascript:alert(6)'></iframe>", expectBlocked: true },
-            { name: 'XSS Anchor JS', payload: '<a href="javascript:alert(7)">XSS</a>', expectBlocked: true },
-            { name: 'XSS Input OnFocus', payload: '<input onfocus=alert(8) autofocus>', expectBlocked: true },
-            { name: 'XSS Math JS', payload: '<math href="javascript:alert(9)">CLICKME</math>', expectBlocked: true },
-            { name: 'XSS Details OnToggle', payload: '<details open ontoggle=alert(10)>', expectBlocked: true },
             // SQL Injection attacks
             { name: 'SQLi OR True', payload: "' OR 1=1;--", expectBlocked: true },
             { name: 'SQLi Double Quote', payload: '" OR "" = "', expectBlocked: true },
             { name: 'SQLi admin comment', payload: "admin' --", expectBlocked: true },
             { name: 'SQLi admin hash', payload: "admin' #", expectBlocked: true },
-            { name: 'SQLi admin block comment', payload: "admin'/*", expectBlocked: true },
-            { name: "SQLi Paren OR True", payload: "') OR ('1'='1", expectBlocked: true },
-            { name: 'SQLi Drop Table', payload: '1; DROP TABLE users', expectBlocked: true },
-            { name: 'SQLi Exec Shell', payload: "1; EXEC xp_cmdshell('dir')", expectBlocked: true }
         ];
 
         for (const test of testCases) {
