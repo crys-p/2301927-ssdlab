@@ -9,7 +9,7 @@
     <% if (error) { %>
         <p style="color:red;">Invalid input detected. Please try again.</p>
     <% } %>
-    <form action="/search" method="POST" onsubmit="validateForm(event)">
+    <form action="/result" method="POST" onsubmit="validateForm(event)">
         <input type="text" id="searchTerm" name="searchTerm" value="<%= value %>" required />
         <button type="submit">Search</button>
     </form>

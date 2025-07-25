@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     res.render('index', { error, value });
 });
 
-app.post('/search', (req, res) => {
+app.post('/result', (req, res) => {
     const searchTerm = req.body.searchTerm || '';
     if (isMaliciousInput(searchTerm)) {
         req.session.error = true;
