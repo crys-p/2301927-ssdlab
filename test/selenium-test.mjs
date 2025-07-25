@@ -6,13 +6,13 @@ const environment = process.argv[2] || 'local';
 // URLs based on environment
 // Obtain dev selenium server IP using: docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' selenium-server
 const seleniumUrl = environment === 'github' 
-  ? 'http://selenium:4444/wd/hub' 
-  : 'http://localhost:4444/wd/hub';
+  ? 'http://selenium:4444/wd/hub' // NOSONAR: local testing
+  : 'http://localhost:4444/wd/hub'; // NOSONAR: local dev use
 
 // Note: Start the nodejs server before running the test locally
 const serverUrl = environment === 'github' 
-  ? 'http://testserver:3000/' 
-  : 'http://host.docker.internal/';
+  ? 'http://testserver:3000/' // NOSONAR: local testing
+  : 'http://host.docker.internal/'; // NOSONAR: local dev use
   
 
 async function runTests() {
